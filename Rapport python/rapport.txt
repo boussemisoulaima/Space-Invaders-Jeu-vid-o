@@ -1,0 +1,203 @@
+Nom et prénom:  BOUSSEMI Soulaima , BRAHIMI Lisa
+
+
+
+**************
+Introduction:
+
+Le projet Space Invaders consiste à développer un jeu où le joueur contrôle un Defender pour tirer sur des aliens. L’objectif est de gérer le déplacement, les tirs, les collisions et le score
+
+**************
+
+
+
+les classes utilisé:
+1/Bullet:
+
+Méthodes :
+
+init : crée une balle avec sa taille, sa couleur, sa vitesse, et la relie au Defender qui tire
+
+install_in : dessine la balle
+
+move_in : la fait monter , disparaît si elle sort ou touche un alien
+
+Rôle : représenter un tir et le faire avancer automatiquement
+
+
+***
+
+
+2/Alien
+
+Méthodes :
+
+init : crée un alien avec une image, vivant par défaut et prêt à être affiché sur le canvas
+
+install_in : affiche l’alien
+
+move_in : déplace l’alien
+
+coords : renvoie la position actuelle de la balle ( utilisé pour tester les collisions)
+
+destroy : supprime l’alien
+
+Rôle : représenter un alien et gérer sa destruction
+
+
+***
+
+
+3/Fleet
+
+Méthodes :
+
+init : initialise une flotte vide, définit sa vitesse, sa direction et la largeur du canvas
+
+install_in : construit la grille d’aliens
+
+move_in : gère le déplacement global des aliens
+
+get_bottom_y : renvoie la position la plus basse des aliens vivants
+(utilisé pour vérifier si les aliens ont atteint le Defender)
+
+manage_collisions_with : détecte les collisions bullet/alien
+
+Rôle : gérer toute la flotte, ses mouvements et les collisions
+
+
+***
+
+4/Defender
+
+Méthodes :
+
+init : initialise le defender du joueur, ses dimensions, sa vitesse de déplacement et sa liste de balles
+
+install_in : dessine le defender.
+
+move_in : déplacement (gauche,droite)
+
+fire : crée un Bullet 
+
+remove_bullet : retire une balle de la liste après qu’elle a disparu ou touché un alien
+
+get_top_y : renvoie la position du haut du Defender, utilisée pour vérifier si un alien est arrivé jusqu’au Defender
+
+Rôle : représenter le Defender et gérer ses tirs
+ 
+
+***
+
+5/Game
+
+
+Méthodes :
+
+init : initialise la zone de jeu, le score, le Defender et la Fleet, prépare l’animation
+
+update_score_text : met à jour l’affichage du score
+
+animation : boucle du jeu (appelée toutes les 30 ms) : déplace les balles, déplace la flotte, vérifie victoire ou défaite
+
+move_bullets : fait avancer chaque balle et gère les collisions avec les aliens et augmente le score si un alien est touché
+
+sauvegarder_scores : enregistre les scores dans scores.json
+
+check_game_over : vérifie si la flotte a atteint le Defender 
+
+check_victory : vérifie si tous les aliens sont détruits 
+
+
+Rôle : déplacer les éléments, vérifier les collisions, mettre à jour le score et détecter la fin de la partie
+
+
+***
+
+6/SpaceInvaders
+
+Méthodes :
+
+
+init : crée la fenêtre principale, lit les scores sauvegardés et prépare l’écran d’accueil
+
+start_game : crée la partie et lance l’animation
+
+play : démarre la boucle Tkinter
+
+Rôle : gérer l’écran d’accueil et choisir le joueur et lancer le jeu
+
+
+
+
+
+********************
+
+
+la relation entre les classes:
+
+SpaceInvaders -> crée un Game  
+
+Game -> contient un Defender et une Fleet
+
+Defender -> crée des Bullet
+
+Fleet -> contient plusieurs Alien
+
+Les Bullet peuvent détruire des Alien, ce qui met à jour le score dans Game
+
+
+
+
+
+
+********************
+
+
+Améliorations réalisées :
+
+*/Ajout d’une page d’accueil où l’utilisateur saisit son nom avant de commencer la partie.
+
+*/Le score est affiché en temps réel pendant la partie et augmente de 10 points à chaque alien détruit.
+
+*/Sauvegarde automatique du score à la fin de la partie sous le nom du joueur.
+
+*/Gestion des collisions entre les tirs du Defender et les aliens.
+
+Fonctionnalités non réalisées :
+
+*/Les aliens ne tirent pas encore sur le Defender
+
+
+
+
+
+**************
+
+
+
+Perspectives IA :
+
+*/Aliens qui visent le joueur
+
+*/Le jeu devient plus facile ou plus difficile selon le joueur
+
+*/Différents types d’aliens (rapides, résistants, qui bougent différemment)
+
+*/Un drone ami pour aider le joueur
+
+
+
+
+
+
+
+
+
+**************
+
+
+
+
+Conclusion:
+le joueur peut se déplacer, tirer et détruire les aliens. Le score se met à jour et se sauvegarde. À l’avenir, on pourrait ajouter de l’IA et d’autres éléments pour rendre le jeu plus intéressant
